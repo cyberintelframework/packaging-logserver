@@ -1,0 +1,443 @@
+#!/usr/bin/perl -w
+
+use Switch;
+use Debconf::Client::ConfModule ':all';
+use DBI;
+use Data::Dumper;
+
+# Color codes
+$n = "\033[0;39m";
+$y = "\033[1;33m";
+$r = "\033[1;31m";
+$g = "\033[1;32m";
+
+# predefined variables
+$targetdir = "/opt/surfnetids/";
+$logfile = "$targetdir/logserver-debinstall.err";
+$apachesite = "/etc/apache2/sites-enabled/";
+$geoiploc = "http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz";
+$ts = time();
+$redo = 0;
+@version_ar = (10300, 10400, 20000, 20002, 20003, 30000);
+
+# Setting up debconf
+version('2.0');
+my $capb=capb('backup');
+
+# Setting up state machine for debconf to use
+$state = 1;
+$empty = 0;
+$redo = 0;
+# end + 1
+while ($state < 13 && $state != 0) {
+    switch($state) {
+        case 1 {
+            $redo = 0;
+            input("high", "surfids-logserver/dbhost");
+        }
+        case 2 {
+            @ret = get("surfids-logserver/dbhost");
+            $dbhost = $ret[1];
+            if ("$dbhost" eq "") {
+                $empty = 1;
+                input("high", "surfids-logserver/empty");
+            } else {
+                input("high", "surfids-logserver/adminuser");
+            }
+        }
+        case 3 {
+            @ret = get("surfids-logserver/adminuser");
+            $adminuser = $ret[1];
+            if ("$adminuser" eq "") {
+                $empty = 1;
+                input("high", "surfids-logserver/empty");
+            } else {
+                input("high", "surfids-logserver/adminuserpass");
+            }
+        }
+        case 4 {
+            @ret = get("surfids-logserver/adminuserpass");
+            $adminuserpass = $ret[1];
+            if ("$adminuserpass" eq "") {
+                $empty = 1;
+                input("high", "surfids-logserver/empty");
+            } else {
+                input("high", "surfids-logserver/dbport");
+            }
+        }
+        case 5 {
+            @ret = get("surfids-logserver/dbport");
+            $dbport = $ret[1];
+            if ("$dbport" eq "") {
+                $empty = 1;
+                input("high", "surfids-logserver/empty");
+            } else {
+                input("high", "surfids-logserver/dbname");
+            }
+        }
+        case 6 {
+            @ret = get("surfids-logserver/dbname");
+            $dbname = $ret[1];
+            if ("$dbname" eq "") {
+                $empty = 1;
+                input("high", "surfids-logserver/empty");
+            } else {
+                input("high", "surfids-logserver/webuser");
+            }
+        }
+        case 7 {
+            @ret = get("surfids-logserver/webuser");
+            $webuser = $ret[1];
+            if ("$webuser" eq "") {
+                $empty = 1;
+                input("high", "surfids-logserver/empty");
+            } else {
+                input("high", "surfids-logserver/webuserpass");
+            }
+        }
+        case 8 {
+            @ret = get("surfids-logserver/webuserpass");
+            $webuserpass = $ret[1];
+            if ("$webuserpass" eq "") {
+                $empty = 1;
+                input("high", "surfids-logserver/empty");
+            } else {
+                input("high", "surfids-logserver/nepenthespass");
+            }
+        }
+        case 9 {
+            @ret = get("surfids-logserver/nepenthespass");
+            $nepenthespass = $ret[1];
+            if ("$nepenthespass" eq "") {
+                $empty = 1;
+                input("high", "surfids-logserver/empty");
+            } else {
+                input("high", "surfids-logserver/pofuserpass");
+            }
+        }
+        case 10 {
+            @ret = get("surfids-logserver/pofuserpass");
+            $pofuserpass = $ret[1];
+            if ("$pofuserpass" eq "") {
+                $empty = 1;
+                input("high", "surfids-logserver/empty");
+            } else {
+                input("high", "surfids-logserver/argospass");
+            }
+        }
+        case 11 {
+            @ret = get("surfids-logserver/argospass");
+            $argospass = $ret[1];
+            if ("$argospass" eq "") {
+                $empty = 1;
+                input("high", "surfids-logserver/empty");
+            } else {
+                input("high", "surfids-logserver/geoipdb");
+            }
+        }
+        case 12 {
+            @ret = get("surfids-logserver/geoipdb");
+            $geoipdb = $ret[1];
+
+            # Testing our database connection
+            $c_pgsql_pass = $adminuserpass;
+            $c_pgsql_user = $adminuser;
+            $c_pgsql_host = $dbhost;
+            $c_pgsql_dbname = "postgres";
+            $c_pgsql_port = $dbport;
+            $c_dsn = "DBI:Pg:dbname=$c_pgsql_dbname;host=$c_pgsql_host;port=$c_pgsql_port";
+            $dbh = DBI->connect($c_dsn, $c_pgsql_user, $c_pgsql_pass);
+            $err = $DBI::errstr ? $DBI::errstr : "";
+            if ("$err" ne "") {
+                $redo = 1;
+                @ret = input("high", "surfids-logserver/noconn");
+            } else {
+                # Let's check the current db version
+#                $sql = "SELECT version FROM version";
+#                $q = $dbh->prepare($sql);
+#                $ec = $q->execute();
+#                if ($q->rows > 0) {
+#                    @row = $q->fetchrow_array;
+#                    $curver = $row[0];
+#                } else {
+#                    # Version check 20004
+#                     $sql = "SELECT id FROM serverinfo";
+#                    $q = $dbh->prepare($sql);
+#                    $ec = $q->execute();
+#                    
+#                }
+            }
+        }
+    }
+    # end
+    if ($state > 0) {
+        if ($empty == 1) {
+            $empty = 0;
+            $state--;
+        } elsif ($state < 12 || $redo == 1) {
+            my @ret = go();
+            if ($redo == 0) {
+                if ($ret[0] == 30) {
+                    $state--;
+                } else {
+                   $state++;
+                }
+            } else {
+                $state = 1;
+            }
+        } else {
+            $state++;
+        }
+    }
+}
+
+if ($state == 0) {
+    exit 1;
+}
+
+# Handling previous logfile
+if (-e "$logfile") {
+  `rm -f $logfile 2>/dev/null`;
+}
+
+# Making sure cron changes are handled
+`/etc/init.d/cron restart`;
+
+# Setting up apache site configuration
+if (! -e "$apachesite/surfids-logserver.conf") {
+    `ln -s /etc/surfnetids/surfnetids-log-apache.conf $apachesite/surfids-logserver.conf`;
+}
+
+# Handing auth_pgsql mod
+if (-e "/etc/apache2/mods-available/000_auth_pgsql.load") {
+    `a2enmod 000_auth_pgsql`;
+} elsif (-e "/etc/apache2/mods-available/auth_pgsql") {
+    `a2enmod auth_pgsql`;
+}
+
+# Restarting apache
+`/etc/init.d/apache2 restart`;
+
+# Setting up the .htaccess for the rssfeed.php
+`cp $targetdir/htaccess.dist $targetdir/webinterface/.htaccess`;
+
+if ("$webuser" ne "idslog") {
+  @arsql = `ls -l $targetdir/sql/ | grep sql | grep -v "nepenthes.sql" | awk '{print \$NF}'`;
+  foreach $sqlfile (@arsql) {
+    chomp($sqlfile);
+    `sed 's/idslog;/\"$webuser\";/' $targetdir/sql/$sqlfile > $targetdir/sql/$sqlfile.new`;
+    `mv $targetdir/sql/$sqlfile.new $targetdir/sql/$sqlfile`;
+  }
+  `sed 's/idslog/$webuser/' $targetdir/webinterface/.htaccess > $targetdir/htaccess.dist`;
+  `cp $targetdir/htaccess.dist $targetdir/webinterface/.htaccess`;
+}
+
+if ("$dbname" ne "idsserver") {
+  `sed 's/idsserver/$dbname/' $targetdir/webinterface/.htaccess > $targetdir/htaccess.dist`;
+  `cp $targetdir/htaccess.dist $targetdir/webinterface/.htaccess`;
+}
+
+if ("$dbhost" ne "localhost") {
+  `sed 's/localhost/$dbhost/' $targetdir/webinterface/.htaccess > $targetdir/htaccess.dist`;
+  `cp $targetdir/htaccess.dist $targetdir/webinterface/.htaccess`;
+}
+
+if ("$dbport" ne "5432") {
+  `sed 's/5432/$dbport/' $targetdir/webinterface/.htaccess > $targetdir/htaccess.dist`;
+  `cp $targetdir/htaccess.dist $targetdir/webinterface/.htaccess`;
+}
+
+# Creating .pgpass file
+if (! -e "~/.pgpass") {
+    `touch ~/.pgpass`;
+} else {
+    `mv ~/.pgpass ~/.pgpass_bak`;
+    `touch ~/.pgpass`;
+}
+`chmod 0600 ~/.pgpass`;
+`echo "$dbhost:$dbport:postgres:$adminuser:$adminuserpass" > ~/.pgpass`;
+
+# Creating all the database stuff
+`createuser -h $dbhost -p $dbport -q -S -D -E -R -U "$adminuser" "$webuser"`;
+`createuser -h $dbhost -p $dbport -q -S -D -E -R -U "$adminuser" nepenthes`;
+`createuser -h $dbhost -p $dbport -q -S -D -E -R -U "$adminuser" pofuser`;
+`createuser -h $dbhost -p $dbport -q -S -D -E -R -U "$adminuser" argos`;
+
+# Setting up passwords for created users
+open(PASS, "> $targetdir/.pass.sql");
+print PASS "ALTER ROLE $webuser ENCRYPTED PASSWORD '$webuserpass';\n";
+print PASS "ALTER ROLE nepenthes ENCRYPTED PASSWORD '$nepenthespass';\n";
+print PASS "ALTER ROLE pofuser ENCRYPTED PASSWORD '$pofuserpass';\n";
+print PASS "ALTER ROLE argos ENCRYPTED PASSWORD '$argospass';\n";
+close(PASS);
+
+`psql -h $dbhost -p $dbport -f $targetdir/.pass.sql -U $adminuser postgres`;
+`rm -f $targetdir/.pass.sql`;
+
+# Checking main database
+$chk = `psql -U $adminuser -h $dbhost -p $dbport --list | grep $dbname | wc -l 2>/dev/null`;
+chomp($chk);
+
+if ($chk == 0) {
+    `createdb -h $dbhost -p $dbport -U "$adminuser" -O "$adminuser" "$dbname"`;
+
+    `echo "$dbhost:$dbport:$dbname:$adminuser:$adminuserpass" > ~/.pgpass`;
+    # Creating main database
+    `psql -h $dbhost -p $dbport -q -f $targetdir/sql/all.sql -U "$adminuser" "$dbname" 2>>$logfile`;
+} else {
+    `echo "Database already exists, skipping creation!" >>$logfile`;
+    `echo "Checking current database version!" >>$logfile`;
+
+    if ($dbh) {
+        $dbh->disconnect;
+    }
+
+    # Testing our database connection
+    $c_pgsql_pass = $adminuserpass;
+    $c_pgsql_user = $adminuser;
+    $c_pgsql_host = $dbhost;
+    $c_pgsql_dbname = "idsserver";
+    $c_pgsql_port = $dbport;
+    $c_dsn = "DBI:Pg:dbname=$c_pgsql_dbname;host=$c_pgsql_host;port=$c_pgsql_port";
+    $dbh = DBI->connect($c_dsn, $c_pgsql_user, $c_pgsql_pass, { PrintError => 0});
+    $err = $DBI::errstr ? $DBI::errstr : "";
+
+    $sql = "SELECT version FROM version";
+    $q = $dbh->prepare($sql);
+    $ec = $q->execute();
+    $curver = 0;
+    if ($q->rows > 0) {
+        @row = $q->fetchrow_array;
+        $curver = $row[0];
+    } else {
+        # Version check 10300
+        $sql = "SELECT data_type FROM information_schema.columns ";
+        $sql .= " WHERE table_name = 'binaries' AND column_name = 'bin'";
+        $q = $dbh->prepare($sql);
+        $ec = $q->execute();
+        $num = $q->rows;
+        if ($num == 1) {
+            @row = $q->fetchrow_array;
+            $datatype = $row[0];
+            if ($datatype eq "character varying") {
+                $curver = 10300;
+            }
+        }
+
+        if ($curver == 0) {
+            # Version check 20004
+            $sql = "SELECT table_name FROM information_schema.tables ";
+            $sql .= " WHERE table_name = 'serverinfo' ";
+            $q = $dbh->prepare($sql);
+            $ec = $q->execute();
+            $num = $q->rows;
+            if ($num == 1) {
+                $curver = 20004;
+            }
+        }
+
+        if ($curver == 0) {
+            # Version check 20002
+            $sql = "SELECT table_name FROM information_schema.tables ";
+            $sql .= " WHERE table_name = 'ostypes' ";
+            $q = $dbh->prepare($sql);
+            $ec = $q->execute();
+            $num = $q->rows;
+            if ($num == 1) {
+                $curver = 20002;
+            }
+        }
+
+        if ($curver == 0) {
+            # Version check 20000
+            $sql = "SELECT table_name FROM information_schema.tables ";
+            $sql .= " WHERE table_name = 'argos' ";
+            $q = $dbh->prepare($sql);
+            $ec = $q->execute();
+            $num = $q->rows;
+            if ($num == 1) {
+                $curver = 20000;
+            }
+        }
+
+        if ($curver == 0) {
+            # Version check 10400
+            $sql = "SELECT table_name FROM information_schema.tables ";
+            $sql .= " WHERE table_name = 'report_template_threshold' ";
+            $q = $dbh->prepare($sql);
+            $ec = $q->execute();
+            $num = $q->rows;
+            if ($num == 1) {
+                $curver = 10400;
+            }
+        }
+    }
+    `echo "Detected current database version: $curver" >>$logfile`;
+
+    `echo "$dbhost:$dbport:$dbname:$adminuser:$adminuserpass" > ~/.pgpass`;
+    foreach $v (@version_ar) {
+        if ($v > $curver) {
+            `echo "Going to apply SQL changes for $v" >>$logfile`;
+            `psql -h $dbhost -p $dbport -q -f $targetdir/sql/$v.sql -U "$adminuser" "$dbname" 2>>$logfile`;
+        }
+    }    
+}
+
+`rm ~/.pgpass`;
+if (-e "~/.pgpass_bak") {
+    `mv ~/.pgpass_bak ~/.pgpass`;
+    `chmod 0600 ~/.pgpass`;
+}
+
+# Need to check if the database already has been created
+# if not, use the complete SQL file now
+
+# Downloading GeoIP database if needed
+if ("$geoipdb" eq "true") {
+    `wget -q -O "$targetdir/GeoLiteCity.dat.gz" $geoiploc`;
+    `gunzip $targetdir/GeoLiteCity.dat.gz`;
+    `mv $targetdir/GeoLiteCity.dat $targetdir/include/`;
+}
+
+if (-e "/etc/apache2/sites-available/surfnetids-log-apache.conf") {
+    `rm -f /etc/apache2/sites-available/surfnetids-log-apache.conf`;
+}
+if (-e "/etc/apache2/sites-enabled/surfnetids-log-apache.conf") {
+    `rm -f /etc/apache2/sites-enabled/surfnetids-log-apache.conf`;
+}
+
+if (-e "$targetdir/logserver_remove.txt") {
+  @list = `cat $targetdir/logserver_remove.txt`;
+  foreach $tar (@list) {
+    chomp($tar);
+    if ("$tar" ne "") {
+      if ($tar !~ /.*\.\..*/) {
+        if (-e "$targetdir/$tar") {
+          `rm -f $targetdir/$tar`;
+        }
+      }
+    }
+  }
+}
+
+# Setting up surfids.log file
+if (! -e "/var/log/surfids.log") {
+  `echo "" >> /var/log/surfids.log`;
+}
+`chown www-data:adm /var/log/surfids.log`;
+
+# Cleaning up debconf database passwords
+reset("surfids-logserver/adminuserpass");
+fset("surfids-logserver/adminuserpass","seen","false");
+
+reset("surfids-logserver/webuserpass");
+fset("surfids-logserver/webuserpass","seen","false");
+
+reset("surfids-logserver/nepenthespass");
+fset("surfids-logserver/nepenthespass","seen","false");
+
+reset("surfids-logserver/pofuserpass");
+fset("surfids-logserver/pofuserpass","seen","false");
+
+reset("surfids-logserver/argospass");
+fset("surfids-logserver/argospass","seen","false");

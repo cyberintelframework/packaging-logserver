@@ -1,0 +1,101 @@
+Template: surfids-logserver/empty
+Type: Note
+Description: Input cannot be an empty string
+ You have to enter a value in the previous
+ question.
+
+Template: surfids-logserver/dbhost
+Type: String
+Default: localhost
+Description: Database host:
+ Enter the hostname or IP address of the 
+ machine that is hosting your database. If you 
+ aren't planning on separating the database
+ from the logging server, you can just use
+ localhost here.
+
+Template: surfids-logserver/dbport
+Type: String
+Default: 5432
+Description: Database listening port:
+ Enter the port number that your PostgreSQL
+ database uses for incoming connections. The 
+ default port for a standard PostgreSQL 
+ installation is 5432.
+
+Template: surfids-logserver/dbname
+Type: String
+Default: idsserver
+Description: Database name:
+ Enter the name of your database. The default 
+ value should be good enough for most cases.
+
+Template: surfids-logserver/adminuser
+Type: String
+Default: postgres
+Description: Admin database user:
+ If you already have an administrative user for your 
+ PostgreSQL installation, enter this name here.
+ .
+ NOTE: The administrative user for your PostgreSQL
+ installation needs to exist before continuing. If
+ you don't have one yet, you can create one by 
+ issuing this command on your database server:
+ sudo -u postgres createuser -s -d -r -P adminuser
+
+Template: surfids-logserver/adminuserpass
+Type: String
+Description: Admin database user password:
+ Enter the password you are using for your administrative 
+ PostgreSQL user. 
+
+Template: surfids-logserver/webuser
+Type: String
+Default: idslog
+Description: SURFids database user:
+ Enter the username of the user that will be handling
+ the database connections. This user will be created 
+ if it does not already exists.
+
+Template: surfids-logserver/webuserpass
+Type: String
+Description: SURFids database user password:
+ Enter the password you want to use for the SURFids database
+ user.
+
+Template: surfids-logserver/nepenthespass
+Type: String
+Description: SURFids database user (nepenthes) password:
+ Enter the password you want to use for the nepenthes 
+ database user. This user is used by Nepenthes for 
+ connecting to the database.
+
+Template: surfids-logserver/pofuserpass
+Type: String
+Description: SURFids database user (pofuser) password:
+ Enter the password you want to use for the pofuser. 
+ This user is used by p0f for connecting to the database.
+
+Template: surfids-logserver/argospass
+Type: String
+Description: SURFids database user (argos) password:
+ Enter the password you want to use for the argos 
+ database user. This user is used by the SURFids Argos
+ scripts to connect to the database.
+
+Template: surfids-logserver/geoipdb
+Type: Boolean
+Description: Do you want to download the latest GeoIP database?
+ The GeoIP database is used in the webinterface to 
+ match IP addresses with their correspondant geographical
+ location.
+
+Template: surfids-logserver/noconn
+Type: Note
+Description: Database connection failed
+ A connection to the database could not be made. You can 
+ go back and enter different connection info if you 
+ think you have made a mistake or if you want to 
+ retry the connection.
+ .
+ Before continuing, a connection must be possible.

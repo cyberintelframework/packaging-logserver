@@ -1,0 +1,875 @@
+surfids-logserver (3.145) unstable; urgency=low
+
+  * Fixed mta stuff
+
+ -- root <ids@surfnet.nl>  Fri,  8 May 2009 16:43:25 +0200
+
+surfids-logserver (3.144) unstable; urgency=low
+
+  * new control file.
+
+ -- root <ids@surfnet.nl>  Fri,  8 May 2009 16:03:57 +0200
+
+surfids-logserver (3.143) unstable; urgency=low
+
+  * Changed sendmail dependency to mail-transfer-agent
+
+ -- root <ids@surfnet.nl>  Fri,  8 May 2009 15:54:10 +0200
+
+surfids-logserver (3.142) unstable; urgency=low
+
+  * Fixed conflicts.
+
+ -- root <ids@surfnet.nl>  Fri,  8 May 2009 15:39:54 +0200
+
+surfids-logserver (3.141) unstable; urgency=low
+
+  * New control file. Added Conflicts for Exim4.
+
+ -- root <ids@surfnet.nl>  Fri,  8 May 2009 15:26:22 +0200
+
+surfids-logserver (3.140) unstable; urgency=low
+
+  * New control file, trying to fix sendmail dependancies.
+
+ -- root <ids@surfnet.nl>  Fri,  8 May 2009 14:50:47 +0200
+
+surfids-logserver (3.139) unstable; urgency=low
+
+  * Testing new make script.
+
+ -- root <ids@surfnet.nl>  Fri,  8 May 2009 13:27:04 +0200
+
+surfids-logserver (3.138) unstable; urgency=low
+
+  * upgrade test
+
+ -- root <ids@surfnet.nl>  Thu, 23 Apr 2009 15:08:21 +0200
+
+surfids-logserver (3.137) unstable; urgency=low
+
+  * Added fset for seen flags.
+
+ -- root <ids@surfnet.nl>  Thu, 23 Apr 2009 14:19:42 +0200
+
+surfids-logserver (3.136) unstable; urgency=low
+
+  * Upgrade test
+
+ -- root <ids@surfnet.nl>  Thu, 23 Apr 2009 13:44:17 +0200
+
+surfids-logserver (3.135) unstable; urgency=low
+
+  * Changed some logging
+
+ -- root <ids@surfnet.nl>  Thu, 23 Apr 2009 13:33:04 +0200
+
+surfids-logserver (3.134) unstable; urgency=low
+
+  * Changed db for alter password statements.
+
+ -- root <ids@surfnet.nl>  Thu, 23 Apr 2009 13:24:14 +0200
+
+surfids-logserver (3.133) unstable; urgency=low
+
+  * debug
+
+ -- root <ids@surfnet.nl>  Thu, 23 Apr 2009 11:46:35 +0200
+
+surfids-logserver (3.132) unstable; urgency=low
+
+  * Added debug info again
+
+ -- root <ids@surfnet.nl>  Wed, 22 Apr 2009 16:05:18 +0200
+
+surfids-logserver (3.131) unstable; urgency=low
+
+  * removed -q
+
+ -- root <ids@surfnet.nl>  Wed, 22 Apr 2009 14:49:33 +0200
+
+surfids-logserver (3.130) unstable; urgency=low
+
+  * Removed all debugging stuff
+
+ -- root <ids@surfnet.nl>  Wed, 22 Apr 2009 13:12:15 +0200
+
+surfids-logserver (3.129) unstable; urgency=low
+
+  * Fixed pgsql login
+
+ -- root <ids@surfnet.nl>  Wed, 22 Apr 2009 12:28:54 +0200
+
+surfids-logserver (3.128) unstable; urgency=low
+
+  * added debug messages
+
+ -- root <ids@surfnet.nl>  Wed, 22 Apr 2009 11:38:34 +0200
+
+surfids-logserver (3.127) unstable; urgency=low
+
+  * Added debug info, fixed alter pass statements.
+
+ -- root <ids@surfnet.nl>  Wed, 22 Apr 2009 11:25:49 +0200
+
+surfids-logserver (3.126) unstable; urgency=low
+
+  * debug 2
+
+ -- root <ids@surfnet.nl>  Tue, 21 Apr 2009 16:04:15 +0200
+
+surfids-logserver (3.125) unstable; urgency=low
+
+  * debug
+
+ -- root <ids@surfnet.nl>  Tue, 21 Apr 2009 16:02:34 +0200
+
+surfids-logserver (3.124) unstable; urgency=low
+
+  * added debug messages
+
+ -- root <ids@surfnet.nl>  Tue, 21 Apr 2009 15:56:34 +0200
+
+surfids-logserver (3.123) unstable; urgency=low
+
+  * Added some explanation for the pgsql admin user.
+
+ -- root <ids@surfnet.nl>  Tue, 21 Apr 2009 13:43:41 +0200
+
+surfids-logserver (3.122) unstable; urgency=low
+
+  * Updating passwords after user creation.
+
+ -- root <ids@surfnet.nl>  Mon, 20 Apr 2009 14:20:17 +0200
+
+surfids-logserver (3.121) unstable; urgency=low
+
+  * logserver_remove.txt support
+
+ -- root <ids@surfnet.nl>  Thu,  9 Apr 2009 14:30:16 +0200
+
+surfids-logserver (3.120) unstable; urgency=low
+
+  * Updated to latest logserver files.
+
+ -- root <ids@surfnet.nl>  Thu,  9 Apr 2009 13:52:53 +0200
+
+surfids-logserver (3.119) unstable; urgency=low
+
+  * Added -f to rm.
+
+ -- root <ids@surfnet.nl>  Thu,  9 Apr 2009 13:02:50 +0200
+
+surfids-logserver (3.118) unstable; urgency=low
+
+  * Added removal of obsolete apache config.
+
+ -- root <ids@surfnet.nl>  Thu,  9 Apr 2009 11:32:17 +0200
+
+surfids-logserver (3.117) unstable; urgency=low
+
+  * New.
+
+ -- root <ids@surfnet.nl>  Thu,  9 Apr 2009 11:12:22 +0200
+
+surfids-logserver (3.116) unstable; urgency=low
+
+  * Added reset commands for password to remove them from the debconf db.
+
+ -- root <ids@surfnet.nl>  Wed,  8 Apr 2009 17:57:51 +0200
+
+surfids-logserver (3.115) unstable; urgency=low
+
+  * Fixed psql password request.
+
+ -- root <ids@surfnet.nl>  Wed,  8 Apr 2009 15:48:35 +0200
+
+surfids-logserver (3.114) unstable; urgency=low
+
+  * Changed postinst.
+
+ -- root <ids@surfnet.nl>  Wed,  8 Apr 2009 15:28:04 +0200
+
+surfids-logserver (3.113) unstable; urgency=low
+
+  * Updated prerm.
+
+ -- root <ids@surfnet.nl>  Wed,  8 Apr 2009 15:11:48 +0200
+
+surfids-logserver (3.112) unstable; urgency=low
+
+  * Updated to latest logserver.
+
+ -- root <ids@surfnet.nl>  Wed,  8 Apr 2009 14:33:26 +0200
+
+surfids-logserver (3.111) unstable; urgency=low
+
+  * Added prerm stuff. Added changes stuff for SQL.
+
+ -- root <ids@surfnet.nl>  Wed,  8 Apr 2009 14:06:02 +0200
+
+surfids-logserver (3.110) unstable; urgency=low
+
+  * Added curver debug message.
+
+ -- root <ids@surfnet.nl>  Wed,  8 Apr 2009 13:53:47 +0200
+
+surfids-logserver (3.109) unstable; urgency=low
+
+  * Added version check.
+
+ -- root <ids@surfnet.nl>  Wed,  8 Apr 2009 13:33:11 +0200
+
+surfids-logserver (3.108) unstable; urgency=low
+
+  * Added changed files
+
+ -- root <ids@surfnet.nl>  Tue,  7 Apr 2009 14:09:53 +0200
+
+surfids-logserver (3.107) unstable; urgency=low
+
+  * New postinst
+
+ -- root <ids@surfnet.nl>  Tue,  7 Apr 2009 13:50:24 +0200
+
+surfids-logserver (3.106) unstable; urgency=low
+
+  * Testing db check
+
+ -- root <ids@surfnet.nl>  Mon,  6 Apr 2009 17:11:42 +0200
+
+surfids-logserver (3.105) unstable; urgency=low
+
+  * Added empty to all questions
+
+ -- root <ids@surfnet.nl>  Mon,  6 Apr 2009 14:48:42 +0200
+
+surfids-logserver (3.104) unstable; urgency=low
+
+  * Added empty to templates
+
+ -- root <ids@surfnet.nl>  Mon,  6 Apr 2009 13:41:41 +0200
+
+surfids-logserver (3.103) unstable; urgency=low
+
+  * Empty check
+
+ -- root <ids@surfnet.nl>  Mon,  6 Apr 2009 11:34:12 +0200
+
+surfids-logserver (3.102) unstable; urgency=low
+
+  * Quieter wget output.
+
+ -- root <ids@surfnet.nl>  Mon,  6 Apr 2009 11:06:55 +0200
+
+surfids-logserver (3.101) unstable; urgency=low
+
+  * new postinst
+
+ -- root <ids@surfnet.nl>  Fri,  3 Apr 2009 16:37:15 +0200
+
+surfids-logserver (3.100) unstable; urgency=low
+
+  * new postinst
+
+ -- root <ids@surfnet.nl>  Fri,  3 Apr 2009 16:16:39 +0200
+
+surfids-logserver (3.99) unstable; urgency=low
+
+  * new postinst
+
+ -- root <ids@surfnet.nl>  Fri,  3 Apr 2009 16:06:11 +0200
+
+surfids-logserver (3.98) unstable; urgency=low
+
+  * new postinst
+
+ -- root <ids@surfnet.nl>  Fri,  3 Apr 2009 15:37:36 +0200
+
+surfids-logserver (3.97) unstable; urgency=low
+
+  * new postinst
+
+ -- root <ids@surfnet.nl>  Fri,  3 Apr 2009 15:12:18 +0200
+
+surfids-logserver (3.96) unstable; urgency=low
+
+  * added echo before user creation
+
+ -- root <ids@surfnet.nl>  Fri,  3 Apr 2009 15:06:41 +0200
+
+surfids-logserver (3.95) unstable; urgency=low
+
+  * new postinst
+
+ -- root <ids@surfnet.nl>  Fri,  3 Apr 2009 14:48:11 +0200
+
+surfids-logserver (3.94) unstable; urgency=low
+
+  * Fixed dbuser / adminuser bug
+
+ -- root <ids@surfnet.nl>  Fri,  3 Apr 2009 14:35:21 +0200
+
+surfids-logserver (3.93) unstable; urgency=low
+
+  * New postinst
+
+ -- root <ids@surfnet.nl>  Fri,  3 Apr 2009 13:46:08 +0200
+
+surfids-logserver (3.92) unstable; urgency=low
+
+  * New postinst
+
+ -- root <ids@surfnet.nl>  Fri,  3 Apr 2009 13:41:50 +0200
+
+surfids-logserver (3.91) unstable; urgency=low
+
+  * new postinst
+
+ -- root <ids@surfnet.nl>  Fri,  3 Apr 2009 11:55:28 +0200
+
+surfids-logserver (3.90) unstable; urgency=low
+
+  * new postinst
+
+ -- root <ids@surfnet.nl>  Fri,  3 Apr 2009 11:12:39 +0200
+
+surfids-logserver (3.89) unstable; urgency=low
+
+  * new postinst
+
+ -- root <ids@surfnet.nl>  Thu,  2 Apr 2009 15:31:56 +0200
+
+surfids-logserver (3.88) unstable; urgency=low
+
+  * New postinst
+
+ -- root <ids@surfnet.nl>  Thu,  2 Apr 2009 11:28:26 +0200
+
+surfids-logserver (3.87) unstable; urgency=low
+
+  * new postinst
+
+ -- root <ids@surfnet.nl>  Thu,  2 Apr 2009 11:15:08 +0200
+
+surfids-logserver (3.86) unstable; urgency=low
+
+  * Removed sudo dependancy.
+
+ -- root <ids@surfnet.nl>  Thu,  2 Apr 2009 10:43:38 +0200
+
+surfids-logserver (3.85) unstable; urgency=low
+
+  * Testing new dbconn test
+
+ -- root <ids@surfnet.nl>  Fri, 27 Mar 2009 16:16:10 +0100
+
+surfids-logserver (3.84) unstable; urgency=low
+
+  * Testing postinst
+
+ -- root <ids@surfnet.nl>  Fri, 27 Mar 2009 16:04:26 +0100
+
+surfids-logserver (3.83) unstable; urgency=low
+
+  * Testing new postinst
+
+ -- root <ids@surfnet.nl>  Fri, 27 Mar 2009 15:11:56 +0100
+
+surfids-logserver (3.82) unstable; urgency=low
+
+  * Fixed postinst dbconn test
+
+ -- root <ids@surfnet.nl>  Fri, 27 Mar 2009 14:58:29 +0100
+
+surfids-logserver (3.81) unstable; urgency=low
+
+  * Added debconf dependancy.
+
+ -- root <ids@surfnet.nl>  Fri, 27 Mar 2009 14:43:11 +0100
+
+surfids-logserver (3.80) unstable; urgency=low
+
+  * Fixed changelog
+
+ -- root <ids@surfnet.nl>  Fri, 27 Mar 2009 14:27:44 +0100
+
+surfids-logserver (3.79) unstable; urgency=low
+
+  * Testing new postinst
+
+ -- root <ids@surfnet.nl>  Fri, 27 Mar 2009 14:23:11 +0100
+
+surfids-logserver (3.78) unstable; urgency=low
+
+  * Added prerm script
+
+ -- root <ids@surfnet.nl>  Fri, 20 Mar 2009 11:41:51 +0100
+
+surfids-logserver (3.77) unstable; urgency=low
+
+  * Testing 77 - Updated installer and sql files.
+
+ -- root <ids@surfnet.nl>  Fri, 20 Mar 2009 11:01:29 +0100
+
+surfids-logserver (3.76) unstable; urgency=low
+
+  * Testing 76 - removed conffiles again. Doesn't really work well.
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 17:13:41 +0100
+
+surfids-logserver (3.75) unstable; urgency=low
+
+  * Testing 75 - fixed install file
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 17:07:36 +0100
+
+surfids-logserver (3.74) unstable; urgency=low
+
+  * Testing 74 - Added conffiles and /etc/surfnetids/*
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 17:03:26 +0100
+
+surfids-logserver (3.73) unstable; urgency=low
+
+  * Testing new lintian
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 16:40:34 +0100
+
+surfids-logserver (3.72) unstable; urgency=low
+
+  * Testing 72 - renamed lintian overrides file
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 16:31:29 +0100
+
+surfids-logserver (3.71) unstable; urgency=low
+
+  * Testing 71 - added lintian overrides file
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 16:27:54 +0100
+
+surfids-logserver (3.70) unstable; urgency=low
+
+  * Testing 70
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 16:19:04 +0100
+
+surfids-logserver (3.69) unstable; urgency=low
+
+  * Testing 69 - Fixed install error
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 16:15:39 +0100
+
+surfids-logserver (3.68) unstable; urgency=low
+
+  * Testing 68 - new directory layout
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 16:14:07 +0100
+
+surfids-logserver (3.67) unstable; urgency=low
+
+  * Testing 67 - new install file, v2
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 16:07:28 +0100
+
+surfids-logserver (3.66) unstable; urgency=low
+
+  * Testing 66 - new install file
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 16:04:25 +0100
+
+surfids-logserver (3.65) unstable; urgency=low
+
+  * Testing 65
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 15:32:13 +0100
+
+surfids-logserver (3.64) unstable; urgency=low
+
+  * Testing 64
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 15:24:36 +0100
+
+surfids-logserver (3.63) unstable; urgency=low
+
+  * Testing 63
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 15:07:09 +0100
+
+surfids-logserver (3.62) unstable; urgency=low
+
+  * Testing 62
+
+ -- root <ids@surfnet.nl>  Thu, 19 Mar 2009 15:05:52 +0100
+
+surfids-logserver (3.61) unstable; urgency=low
+
+  * Testing 61
+
+ -- root <ids@surfnet.nl>  Wed, 18 Mar 2009 16:59:03 +0100
+
+surfids-logserver (3.60) unstable; urgency=low
+
+  * Testing 60
+
+ -- root <ids@surfnet.nl>  Wed, 18 Mar 2009 16:49:02 +0100
+
+surfids-logserver (3.59) unstable; urgency=low
+
+  * Testing 59
+
+ -- root <ids@surfnet.nl>  Wed, 18 Mar 2009 15:29:54 +0100
+
+surfids-logserver (3.58) unstable; urgency=low
+
+  * Testing 58
+
+ -- root <ids@surfnet.nl>  Wed, 18 Mar 2009 15:20:23 +0100
+
+surfids-logserver (3.57) unstable; urgency=low
+
+  * Testing 57
+
+ -- root <ids@surfnet.nl>  Wed, 18 Mar 2009 14:00:34 +0100
+
+surfids-logserver (3.56) unstable; urgency=low
+
+  * Testing 56
+
+ -- root <ids@surfnet.nl>  Wed, 18 Mar 2009 13:53:02 +0100
+
+surfids-logserver (3.55) unstable; urgency=low
+
+  * Testing 55
+
+ -- root <ids@surfnet.nl>  Wed, 18 Mar 2009 11:47:17 +0100
+
+surfids-logserver (3.54) unstable; urgency=low
+
+  * Testing 54
+
+ -- root <ids@surfnet.nl>  Wed, 18 Mar 2009 11:34:01 +0100
+
+surfids-logserver (3.53) unstable; urgency=low
+
+  * Testing 53
+
+ -- root <ids@surfnet.nl>  Tue, 17 Mar 2009 17:01:15 +0100
+
+surfids-logserver (3.52) unstable; urgency=low
+
+  * Testing 52
+
+ -- root <ids@surfnet.nl>  Tue, 17 Mar 2009 16:57:19 +0100
+
+surfids-logserver (3.51) unstable; urgency=low
+
+  * Testing 51
+
+ -- root <ids@surfnet.nl>  Tue, 17 Mar 2009 16:52:41 +0100
+
+surfids-logserver (3.50) unstable; urgency=low
+
+  * Testing 50
+
+ -- root <ids@surfnet.nl>  Tue, 17 Mar 2009 16:46:29 +0100
+
+surfids-logserver (3.49) unstable; urgency=low
+
+  * Testing 49
+
+ -- root <ids@surfnet.nl>  Tue, 17 Mar 2009 15:58:07 +0100
+
+surfids-logserver (3.48) unstable; urgency=low
+
+  * Testing 48
+
+ -- root <ids@surfnet.nl>  Tue, 17 Mar 2009 15:46:38 +0100
+
+surfids-logserver (3.47) unstable; urgency=low
+
+  * Testing 47
+
+ -- root <ids@surfnet.nl>  Tue, 17 Mar 2009 15:44:35 +0100
+
+surfids-logserver (3.46) unstable; urgency=low
+
+  * Testing 46
+
+ -- root <ids@surfnet.nl>  Tue, 17 Mar 2009 15:23:04 +0100
+
+surfids-logserver (3.45) unstable; urgency=low
+
+  * Testing 45
+
+ -- root <ids@surfnet.nl>  Tue, 17 Mar 2009 14:41:26 +0100
+
+surfids-logserver (3.44) unstable; urgency=low
+
+  * Testing 44
+
+ -- root <ids@surfnet.nl>  Tue, 17 Mar 2009 11:31:34 +0100
+
+surfids-logserver (3.43) unstable; urgency=low
+
+  * Testing 43
+
+ -- root <ids@surfnet.nl>  Tue, 17 Mar 2009 11:27:17 +0100
+
+surfids-logserver (3.42) unstable; urgency=low
+
+  * Testing 42
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 18:27:54 +0100
+
+surfids-logserver (3.41) unstable; urgency=low
+
+  * Testing 41
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 18:13:32 +0100
+
+surfids-logserver (3.40) unstable; urgency=low
+
+  * Testing 40
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 17:38:41 +0100
+
+surfids-logserver (3.39) unstable; urgency=low
+
+  * Testing 39
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 17:34:08 +0100
+
+surfids-logserver (3.38) unstable; urgency=low
+
+  * Testing 38
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 17:13:02 +0100
+
+surfids-logserver (3.37) unstable; urgency=low
+
+  * Testing 37
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 17:11:41 +0100
+
+surfids-logserver (3.36) unstable; urgency=low
+
+  * Testing 36
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 17:04:24 +0100
+
+surfids-logserver (3.35) unstable; urgency=low
+
+  * Testing 35
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 16:02:23 +0100
+
+surfids-logserver (3.34) unstable; urgency=low
+
+  * testing 34
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 15:45:22 +0100
+
+surfids-logserver (3.33) unstable; urgency=low
+
+  * Testing 33
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 15:21:45 +0100
+
+surfids-logserver (3.32) unstable; urgency=low
+
+  * Testing 32
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 15:13:34 +0100
+
+surfids-logserver (3.31) unstable; urgency=low
+
+  * Testing 31
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 15:11:30 +0100
+
+surfids-logserver (3.30) unstable; urgency=low
+
+  * Testing 30
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 14:49:29 +0100
+
+surfids-logserver (3.29) unstable; urgency=low
+
+  * Testing 29
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 14:38:33 +0100
+
+surfids-logserver (3.28) unstable; urgency=low
+
+  * Testing 28
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 14:32:33 +0100
+
+surfids-logserver (3.27) unstable; urgency=low
+
+  * Testing 27
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 14:14:28 +0100
+
+surfids-logserver (3.26) unstable; urgency=low
+
+  * Testing 26
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 13:01:33 +0100
+
+surfids-logserver (3.25) unstable; urgency=low
+
+  * Testing 25
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 12:54:35 +0100
+
+surfids-logserver (3.24) unstable; urgency=low
+
+  * Testing 24
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 12:44:35 +0100
+
+surfids-logserver (3.23) unstable; urgency=low
+
+  * Testing 23
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 11:30:39 +0100
+
+surfids-logserver (3.22) unstable; urgency=low
+
+  * Testing 22
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 10:59:58 +0100
+
+surfids-logserver (3.21) unstable; urgency=low
+
+  * Testing 21
+
+ -- root <ids@surfnet.nl>  Mon, 16 Mar 2009 10:56:39 +0100
+
+surfids-logserver (3.20) unstable; urgency=low
+
+  * Testing 20
+
+ -- root <ids@surfnet.nl>  Fri, 13 Mar 2009 16:27:58 +0100
+
+surfids-logserver (3.19) unstable; urgency=low
+
+  * Testing 19
+
+ -- root <ids@surfnet.nl>  Fri, 13 Mar 2009 16:05:51 +0100
+
+surfids-logserver (3.18) unstable; urgency=low
+
+  * Testing 18
+
+ -- root <ids@surfnet.nl>  Fri, 13 Mar 2009 15:16:56 +0100
+
+surfids-logserver (3.17) unstable; urgency=low
+
+  * Testing 17
+
+ -- root <ids@surfnet.nl>  Fri, 13 Mar 2009 15:12:46 +0100
+
+surfids-logserver (3.16) unstable; urgency=low
+
+  * Testing 16
+
+ -- root <ids@surfnet.nl>  Fri, 13 Mar 2009 15:06:32 +0100
+
+surfids-logserver (3.15) unstable; urgency=low
+
+  * Testing 15
+
+ -- root <ids@surfnet.nl>  Fri, 13 Mar 2009 14:59:04 +0100
+
+surfids-logserver (3.14) unstable; urgency=low
+
+  * Testing 14
+
+ -- root <ids@surfnet.nl>  Fri, 13 Mar 2009 14:46:17 +0100
+
+surfids-logserver (3.13) unstable; urgency=low
+
+  * Testing 13
+
+ -- root <ids@surfnet.nl>  Fri, 13 Mar 2009 14:44:47 +0100
+
+surfids-logserver (3.12) unstable; urgency=low
+
+  * Testing 12
+
+ -- root <ids@surfnet.nl>  Fri, 13 Mar 2009 13:58:01 +0100
+
+surfids-logserver (3.11) unstable; urgency=low
+
+  * Testing 11
+
+ -- root <ids@surfnet.nl>  Fri, 13 Mar 2009 13:41:17 +0100
+
+surfids-logserver (3.10) unstable; urgency=low
+
+  * Testing 10
+
+ -- root <ids@surfnet.nl>  Fri, 13 Mar 2009 13:37:00 +0100
+
+surfids-logserver (3.9) unstable; urgency=low
+
+  * Testing 9
+
+ -- root <ids@surfnet.nl>  Fri, 13 Mar 2009 13:23:19 +0100
+
+surfids-logserver (3.8) unstable; urgency=low
+
+  * Testing 8
+
+ -- root <ids@surfnet.nl>  Fri, 13 Mar 2009 11:42:23 +0100
+
+surfids-logserver (3.7) unstable; urgency=low
+
+  * Testing 7
+
+ -- root <ids@surfnet.nl>  Thu, 12 Mar 2009 17:34:06 +0100
+
+surfids-logserver (3.6) unstable; urgency=low
+
+  * Testing 6
+
+ -- root <ids@surfnet.nl>  Thu, 12 Mar 2009 17:29:35 +0100
+
+surfids-logserver (3.5) unstable; urgency=low
+
+  * Testing 5
+
+ -- root <ids@surfnet.nl>  Thu, 12 Mar 2009 17:21:10 +0100
+
+surfids-logserver (3.4) unstable; urgency=low
+
+  * Testing 4
+
+ -- root <ids@surfnet.nl>  Thu, 12 Mar 2009 17:14:03 +0100
+
+surfids-logserver (3.3) unstable; urgency=low
+
+  * Testing 3
+
+ -- root <ids@surfnet.nl>  Thu, 12 Mar 2009 17:04:42 +0100
+
+surfids-logserver (3.2) unstable; urgency=low
+
+  * Testing 2
+
+ -- root <ids@surfnet.nl>  Thu, 12 Mar 2009 17:03:20 +0100
+
+surfids-logserver (3.1) unstable; urgency=low
+
+  * Testing
+
+ -- root <ids@surfnet.nl>  Thu, 12 Mar 2009 17:01:37 +0100
+
+surfids-logserver (3.0) unstable; urgency=low
+
+  * Initial Release.
+
+ -- root <ids@surfnet.nl>  Thu, 12 Mar 2009 11:43:33 +0100
