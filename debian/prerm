@@ -1,0 +1,23 @@
+#!/usr/bin/perl
+if (-e "/opt/surfnetids/webinterface/.htaccess") {
+    `rm -f /opt/surfnetids/webinterface/.htaccess`;
+}
+if (-e "/opt/surfnetids/include/GeoLiteCity.dat") {
+    `rm -f /opt/surfnetids/include/GeoLiteCity.dat`;
+}
+if (-e "/opt/surfnetids/logserver-debinstall.log") {
+    `rm -f /opt/surfnetids/logserver-debinstall.log`;
+}
+if (-e "/opt/surfnetids/logserver-debinstall.err") {
+    `rm -f /opt/surfnetids/logserver-debinstall.err`;
+}
+if (-e "/opt/surfnetids/webinterface/") {
+    `rm -rf /opt/surfnetids/webinterface/`;
+}
+if (-e "/opt/surfnetids/sql/") {
+    `rm -rf /opt/surfnetids/sql/`;
+}
+if (-e "/opt/surfnetids/binaries/") {
+    `rm -rf /opt/surfnetids/binaries/`;
+}
+`rm -f /opt/surfnetids/surfnetids-log-apache.conf*`;
