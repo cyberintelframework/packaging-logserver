@@ -1,6 +1,6 @@
 #!/bin/sh
 
-KEYID=000000
+KEYID=91987C36
 MAKEROOT=/home/build/logserver
 DIST=lenny
 REPOSITORY=/opt/surfnetids/repositories/surfids
@@ -31,6 +31,9 @@ cd $MAKEROOT/trunk
 cp -R ./* $MAKEROOT/$PACKAGE/opt/surfnetids/
 mv $MAKEROOT/$PACKAGE/opt/surfnetids/surfnetids-log.conf $MAKEROOT/$PACKAGE/etc/surfnetids/
 mv $MAKEROOT/$PACKAGE/opt/surfnetids/surfnetids-log-apache.conf $MAKEROOT/$PACKAGE/etc/surfnetids/
+chmod -x $MAKEROOT/$PACKAGE/opt/surfnetids/webinterface/images/worldflags/*.gif
+chmod -Rx $MAKEROOT/$PACKAGE/opt/surfnetids/webinterface/include/*
+chmod -x $MAKEROOT/$PACKAGE/etc/surfnetids/surfnetids-log-apache.conf
 cd $MAKEROOT
 rm -rf $MAKEROOT/trunk/
 cd $MAKEROOT/$PACKAGE
