@@ -389,8 +389,8 @@ if (-e "~/.pgpass_bak") {
     `chmod 0600 ~/.pgpass`;
 }
 
-# Need to check if the database already has been created
-# if not, use the complete SQL file now
+# Install Dionaea SQL functions
+`psql -h $dbhost -p $dbport -q -f $targetdir/sql/dionaea.sql -U "$adminuser" "$dbname" 2>>$logfile`;
 
 # Downloading GeoIP database if needed
 if ("$geoipdb" eq "true") {
