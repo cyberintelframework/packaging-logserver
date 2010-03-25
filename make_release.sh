@@ -4,8 +4,10 @@ KEYID=91987C36
 MAKEROOT=/home/build/logserver
 DIST=lenny
 REPOSITORY=/opt/surfnetids/repositories/surfids
-CHROOTBUILD=$MAKEROOT/chrootimg/$DIST.tgz
-CHROOTTEST=$MAKEROOT/chrootimg/$DIST_test.tgz
+
+# Static location of the chroot images
+CHROOTBUILD=/home/build/chrootimg/$DIST.tgz
+CHROOTTEST=/home/build/chrootimg/$DIST_test.tgz
 MIRROR=http://ftp.nl.debian.org/debian
 PACKAGE=surfids-logserver
 
@@ -26,15 +28,29 @@ fi
 # If this fails, please checkout the sensor trunk:
 # cd $MAKEROOT
 #  svn co http://svn.ids.surfnet.nl/surfids/logserver/trunk
+
+# download temporary trunk
 svn export http://svn.ids.surfnet.nl/surfids/logserver/trunk $MAKEROOT/trunk/
 cd $MAKEROOT/trunk
+
+# cleanup build trunk
+rm -rf $MAKEROOT/$PACKAGE/opt/surfnetids/
+mkdir $MAKEROOT/$PACKAGE/opt/surfnetids/
+
+# copy temporary trunk to build trunk dir
 cp -R ./* $MAKEROOT/$PACKAGE/opt/surfnetids/
+
+# setup /etc directory
 mv $MAKEROOT/$PACKAGE/opt/surfnetids/surfnetids-log.conf $MAKEROOT/$PACKAGE/etc/surfnetids/
 mv $MAKEROOT/$PACKAGE/opt/surfnetids/surfnetids-log-apache.conf $MAKEROOT/$PACKAGE/etc/surfnetids/
+
+# setup permissions
 chmod -x $MAKEROOT/$PACKAGE/opt/surfnetids/webinterface/images/worldflags/*.gif
 chmod -Rx $MAKEROOT/$PACKAGE/opt/surfnetids/webinterface/include/*
 chmod -x $MAKEROOT/$PACKAGE/etc/surfnetids/surfnetids-log-apache.conf
 cd $MAKEROOT
+
+# delete temporary trunk download
 rm -rf $MAKEROOT/trunk/
 cd $MAKEROOT/$PACKAGE
 
