@@ -258,10 +258,10 @@ if (! -e "~/.pgpass") {
 `echo "$dbhost:$dbport:postgres:$adminuser:$adminuserpass" > ~/.pgpass`;
 
 # Creating all the database stuff
-`createuser -h $dbhost -p $dbport -q -S -D -E -R -U "$adminuser" "$webuser"`;
-`createuser -h $dbhost -p $dbport -q -S -D -E -R -U "$adminuser" nepenthes`;
-`createuser -h $dbhost -p $dbport -q -S -D -E -R -U "$adminuser" pofuser`;
-`createuser -h $dbhost -p $dbport -q -S -D -E -R -U "$adminuser" argos`;
+`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" "$webuser"`;
+`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" nepenthes`;
+`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" pofuser`;
+`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" argos`;
 
 # Setting up passwords for created users
 open(PASS, "> $targetdir/.pass.sql");
