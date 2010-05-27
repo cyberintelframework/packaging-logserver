@@ -1,9 +1,8 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 
 use Switch;
 use Debconf::Client::ConfModule ':all';
 use DBI;
-use Data::Dumper;
 
 # Color codes
 $n = "\033[0;39m";
@@ -425,6 +424,8 @@ if (! -e "/var/log/surfids.log") {
   `echo "" >> /var/log/surfids.log`;
 }
 `chown www-data:adm /var/log/surfids.log`;
+
+`echo "[Notice] Default webinterface user/pass: admin/admin\n"`;
 
 # Cleaning up debconf database passwords
 reset("surfids-logserver/adminuserpass");

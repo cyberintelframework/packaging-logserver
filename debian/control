@@ -7,7 +7,7 @@ Build-Depends: debhelper (>= 5), cdbs
 
 Package: surfids-logserver
 Architecture: all
-Depends: debconf, postgresql-8.3, apache2, libapache2-mod-auth-pgsql, sendmail, xalan, perl, php5, php5-pgsql, libclass-dbi-perl, libclass-dbi-pg-perl, php5-gd, libgnupg-perl, libio-socket-ssl-perl, libnet-ssleay-perl, libmime-lite-perl, libmail-pop3client-perl, libmime-perl
+Depends: debconf, postgresql (>= 8.3), apache2, libapache2-mod-auth-pgsql, sendmail, xalan, perl, php5, php5-pgsql, libclass-dbi-perl, libclass-dbi-pg-perl, php5-gd, libgnupg-perl, libio-socket-ssl-perl, libnet-ssleay-perl, libmime-lite-perl, libmail-pop3client-perl, libmime-perl
 Recommends: phppgadmin
 Priority: optional
 Description: The logging server for the SURFids framework
