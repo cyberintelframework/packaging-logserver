@@ -46,7 +46,7 @@ mv $MAKEROOT/$PACKAGE/opt/surfnetids/surfnetids-log-apache.conf $MAKEROOT/$PACKA
 
 # setup permissions
 chmod -x $MAKEROOT/$PACKAGE/opt/surfnetids/webinterface/images/worldflags/*.gif
-chmod -Rx $MAKEROOT/$PACKAGE/opt/surfnetids/webinterface/include/*
+chmod -R -x $MAKEROOT/$PACKAGE/opt/surfnetids/webinterface/include/*
 chmod -x $MAKEROOT/$PACKAGE/etc/surfnetids/surfnetids-log-apache.conf
 cd $MAKEROOT
 
@@ -79,4 +79,4 @@ debsign -k$KEYID ${PACKAGE}_*_i386.changes
 
 # add package to repository
 cd $REPOSITORY
-sudo reprepro include $DIST $MAKEROOT/$PACKAGE_*_i386.changes
+sudo reprepro --keepunreferencedfiles include $DIST $MAKEROOT/$PACKAGE_*_i386.changes
