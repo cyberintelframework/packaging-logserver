@@ -41,6 +41,7 @@ mkdir -p $MAKEROOT/$PACKAGE/opt/surfnetids/
 cp -R ./* $MAKEROOT/$PACKAGE/opt/surfnetids/
 
 # setup /etc directory
+mkdir -p $MAKEROOT/$PACKAGE/etc/surfnetids/
 mv $MAKEROOT/$PACKAGE/opt/surfnetids/surfnetids-log.conf $MAKEROOT/$PACKAGE/etc/surfnetids/
 mv $MAKEROOT/$PACKAGE/opt/surfnetids/surfnetids-log-apache.conf $MAKEROOT/$PACKAGE/etc/surfnetids/
 
