@@ -35,7 +35,7 @@ cd $MAKEROOT/trunk
 
 # cleanup build trunk
 rm -rf $MAKEROOT/$PACKAGE/opt/surfnetids/
-mkdir $MAKEROOT/$PACKAGE/opt/surfnetids/
+mkdir -p $MAKEROOT/$PACKAGE/opt/surfnetids/
 
 # copy temporary trunk to build trunk dir
 cp -R ./* $MAKEROOT/$PACKAGE/opt/surfnetids/
