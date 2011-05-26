@@ -14,10 +14,10 @@ $g = "\033[1;32m";
 $targetdir = "/opt/surfnetids/";
 $logfile = "$targetdir/logserver-debinstall.err";
 $apachesite = "/etc/apache2/sites-enabled/";
-$geoiploc = "http://www.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz";
+$geoiploc = "http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz";
 $ts = time();
 $redo = 0;
-@version_ar = (10300, 10400, 20000, 20002, 20003, 30000, 30400);
+@version_ar = (10300, 10400, 20000, 20002, 20003, 30000, 30400, 31000);
 
 # Setting up debconf
 version('2.0');

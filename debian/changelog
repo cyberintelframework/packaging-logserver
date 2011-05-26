@@ -1,3 +1,39 @@
+surfids-logserver (3.11) lenny; urgency=low
+
+  * 3.1-RC1
+
+ -- SURFids Development Team <ids@surfnet.nl>  Thu, 26 May 2011 16:20:43 +0200
+
+surfids-logserver (3.07) lenny; urgency=low
+
+  * Test build 06
+
+ -- SURFids Development Team <ids@surfnet.nl>  Thu, 27 Jan 2011 17:31:27 +0100
+
+surfids-logserver (3.06) lenny; urgency=low
+
+  * Test build 05
+
+ -- SURFids Development Team <ids@surfnet.nl>  Thu, 27 Jan 2011 17:03:04 +0100
+
+surfids-logserver (3.05) lenny; urgency=low
+
+  * Test build 04
+
+ -- SURFids Development Team <ids@surfnet.nl>  Thu, 27 Jan 2011 14:07:56 +0100
+
+surfids-logserver (3.04) lenny; urgency=low
+
+  * Test build 03
+
+ -- SURFids Development Team <ids@surfnet.nl>  Thu, 27 Jan 2011 14:00:38 +0100
+
+surfids-logserver (3.03) lenny; urgency=low
+
+  * Test build 02
+
+ -- SURFids Development Team <ids@surfnet.nl>  Thu, 27 Jan 2011 13:46:50 +0100
+
 surfids-logserver (3.02) lenny; urgency=low
 
   * Fixed bug #176.
