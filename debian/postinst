@@ -247,20 +247,20 @@ if ("$dbport" ne "5432") {
 }
 
 # Creating .pgpass file
-if (! -e "~/.pgpass") {
-    `touch ~/.pgpass`;
+if (! -e "/root/.pgpass") {
+    `touch /root/.pgpass`;
 } else {
-    `mv ~/.pgpass ~/.pgpass_bak`;
-    `touch ~/.pgpass`;
+    `mv /root/.pgpass /root/.pgpass_bak`;
+    `touch /root/.pgpass`;
 }
-`chmod 0600 ~/.pgpass`;
-`echo "$dbhost:$dbport:postgres:$adminuser:$adminuserpass" > ~/.pgpass`;
+`echo "$dbhost:$dbport:postgres:$adminuser:$adminuserpass" > /root/.pgpass`;
+`chmod 0600 /root/.pgpass`;
 
 # Creating all the database stuff
-`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" "$webuser"`;
-`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" nepenthes`;
-`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" pofuser`;
-`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" argos`;
+`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" "$webuser" 2>>$logfile`;
+`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" nepenthes 2>>$logfile`;
+`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" pofuser 2>>$logfile`;
+`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" argos 2>>$logfile`;
 
 # Setting up passwords for created users
 open(PASS, "> $targetdir/.pass.sql");
@@ -280,7 +280,6 @@ chomp($chk);
 if ($chk == 0) {
     `createdb -h $dbhost -p $dbport -U "$adminuser" -O "$adminuser" "$dbname"`;
 
-    `echo "$dbhost:$dbport:$dbname:$adminuser:$adminuserpass" > ~/.pgpass`;
     # Creating main database
     `psql -h $dbhost -p $dbport -q -f $targetdir/sql/all.sql -U "$adminuser" "$dbname" 2>>$logfile`;
 } else {
@@ -373,7 +372,6 @@ if ($chk == 0) {
     }
     `echo "Detected current database version: $curver" >>$logfile`;
 
-    `echo "$dbhost:$dbport:$dbname:$adminuser:$adminuserpass" > ~/.pgpass`;
     foreach $v (@version_ar) {
         if ($v > $curver) {
             `echo "Going to apply SQL changes for $v" >>$logfile`;
@@ -382,17 +380,17 @@ if ($chk == 0) {
     }    
 }
 
-`rm ~/.pgpass`;
-if (-e "~/.pgpass_bak") {
-    `mv ~/.pgpass_bak ~/.pgpass`;
-    `chmod 0600 ~/.pgpass`;
-}
-
 # Install Dionaea SQL functions
 `psql -h $dbhost -p $dbport -q -f $targetdir/sql/dionaea.sql -U "$adminuser" "$dbname" 2>>$logfile`;
 
 # DROP unused items
 `psql -h $dbhost -p $dbport -q -f $targetdir/sql/drop.sql -U "$adminuser" "$dbname" 2>>$logfile`;
+
+`rm /root/.pgpass`;
+if (-e "/root/.pgpass_bak") {
+    `mv /root/.pgpass_bak /root/.pgpass`;
+    `chmod 0600 /root/.pgpass`;
+}
 
 # Downloading GeoIP database if needed
 if ("$geoipdb" eq "true") {
@@ -428,7 +426,7 @@ if (! -e "/var/log/surfids.log") {
 }
 `chown www-data:adm /var/log/surfids.log`;
 
-`echo "[Notice] Default webinterface user/pass: admin/admin\n"`;
+`echo "[Notice] Default webinterface user/pass: admin/admin\n" 1>&2`;
 
 # Cleaning up debconf database passwords
 reset("surfids-logserver/adminuserpass");
