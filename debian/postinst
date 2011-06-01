@@ -391,6 +391,9 @@ if (-e "~/.pgpass_bak") {
 # Install Dionaea SQL functions
 `psql -h $dbhost -p $dbport -q -f $targetdir/sql/dionaea.sql -U "$adminuser" "$dbname" 2>>$logfile`;
 
+# DROP unused items
+`psql -h $dbhost -p $dbport -q -f $targetdir/sql/drop.sql -U "$adminuser" "$dbname" 2>>$logfile`;
+
 # Downloading GeoIP database if needed
 if ("$geoipdb" eq "true") {
     `wget -q -O "$targetdir/GeoLiteCity.dat.gz" $geoiploc`;
