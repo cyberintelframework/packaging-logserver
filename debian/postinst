@@ -282,14 +282,17 @@ chomp($chk);
 if ($chk == 0) {
     `PGPASSFILE=/root/.pgpass createdb -h $dbhost -p $dbport -U "$adminuser" -O "$adminuser" "$dbname"`;
 
+    `echo "$dbhost:$dbport:$dbname:$adminuser:$adminuserpass" > /root/.pgpass`;
     # Creating main database
     `PGPASSFILE=/root/.pgpass psql -h $dbhost -p $dbport -q -f $targetdir/sql/all.sql -U "$adminuser" "$dbname" 2>>$logfile`;
 } else {
     `echo "Database already exists, skipping creation!" >>$logfile`;
     `echo "Checking current database version!" >>$logfile`;
 
+    `echo "$dbhost:$dbport:$dbname:$adminuser:$adminuserpass" > /root/.pgpass`;
+
     if ($dbh) {
-        $dbh->disconnect;
+        $dbh = "";
     }
 
     # Testing our database connection
@@ -373,6 +376,10 @@ if ($chk == 0) {
         }
     }
     `echo "Detected current database version: $curver" >>$logfile`;
+
+    if ($dbh) {
+        $dbh = "";
+    }
 
     foreach $v (@version_ar) {
         if ($v > $curver) {
