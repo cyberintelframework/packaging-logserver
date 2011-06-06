@@ -259,10 +259,10 @@ if (! -e "/root/.pgpass") {
 $ENV{'PGPASSFILE'} = "/root/.pgpass";
 
 # Creating all the database stuff
-`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" "$webuser" 2>>$logfile`;
-`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" nepenthes 2>>$logfile`;
-`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" pofuser 2>>$logfile`;
-`createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" argos 2>>$logfile`;
+`PGPASSFILE=/root/.pgpass createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" "$webuser" 2>>$logfile`;
+`PGPASSFILE=/root/.pgpass createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" nepenthes 2>>$logfile`;
+`PGPASSFILE=/root/.pgpass createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" pofuser 2>>$logfile`;
+`PGPASSFILE=/root/.pgpass createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" argos 2>>$logfile`;
 
 # Setting up passwords for created users
 open(PASS, "> $targetdir/.pass.sql");
@@ -272,18 +272,18 @@ print PASS "ALTER ROLE pofuser ENCRYPTED PASSWORD '$pofuserpass';\n";
 print PASS "ALTER ROLE argos ENCRYPTED PASSWORD '$argospass';\n";
 close(PASS);
 
-`psql -h $dbhost -p $dbport -f $targetdir/.pass.sql -U $adminuser postgres`;
+`PGPASSFILE=/root/.pgpass psql -h $dbhost -p $dbport -f $targetdir/.pass.sql -U $adminuser postgres`;
 `rm -f $targetdir/.pass.sql`;
 
 # Checking main database
-$chk = `psql -U $adminuser -h $dbhost -p $dbport --list | grep $dbname | wc -l 2>/dev/null`;
+$chk = `PGPASSFILE=/root/.pgpass psql -U $adminuser -h $dbhost -p $dbport --list | grep $dbname | wc -l 2>/dev/null`;
 chomp($chk);
 
 if ($chk == 0) {
-    `createdb -h $dbhost -p $dbport -U "$adminuser" -O "$adminuser" "$dbname"`;
+    `PGPASSFILE=/root/.pgpass createdb -h $dbhost -p $dbport -U "$adminuser" -O "$adminuser" "$dbname"`;
 
     # Creating main database
-    `psql -h $dbhost -p $dbport -q -f $targetdir/sql/all.sql -U "$adminuser" "$dbname" 2>>$logfile`;
+    `PGPASSFILE=/root/.pgpass psql -h $dbhost -p $dbport -q -f $targetdir/sql/all.sql -U "$adminuser" "$dbname" 2>>$logfile`;
 } else {
     `echo "Database already exists, skipping creation!" >>$logfile`;
     `echo "Checking current database version!" >>$logfile`;
@@ -377,16 +377,16 @@ if ($chk == 0) {
     foreach $v (@version_ar) {
         if ($v > $curver) {
             `echo "Going to apply SQL changes for $v" >>$logfile`;
-            `psql -h $dbhost -p $dbport -q -f $targetdir/sql/$v.sql -U "$adminuser" "$dbname" 2>>$logfile`;
+            `PGPASSFILE=/root/.pgpass psql -h $dbhost -p $dbport -q -f $targetdir/sql/$v.sql -U "$adminuser" "$dbname" 2>>$logfile`;
         }
     }    
 }
 
 # Install Dionaea SQL functions
-`psql -h $dbhost -p $dbport -q -f $targetdir/sql/dionaea.sql -U "$adminuser" "$dbname" 2>>$logfile`;
+`PGPASSFILE=/root/.pgpass psql -h $dbhost -p $dbport -q -f $targetdir/sql/dionaea.sql -U "$adminuser" "$dbname" 2>>$logfile`;
 
 # DROP unused items
-`psql -h $dbhost -p $dbport -q -f $targetdir/sql/drop.sql -U "$adminuser" "$dbname" 2>>$logfile`;
+`PGPASSFILE=/root/.pgpass psql -h $dbhost -p $dbport -q -f $targetdir/sql/drop.sql -U "$adminuser" "$dbname" 2>>$logfile`;
 
 `rm /root/.pgpass`;
 if (-e "/root/.pgpass_bak") {
