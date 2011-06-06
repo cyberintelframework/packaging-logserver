@@ -1,3 +1,9 @@
+surfids-logserver (3.12.2) lenny; urgency=low
+
+  * 3.13-RC2
+
+ -- SURFids Development Team <ids@surfnet.nl>  Mon, 06 Jun 2011 12:37:43 +0200
+
 surfids-logserver (3.11) lenny; urgency=low
 
   * 3.1-RC1

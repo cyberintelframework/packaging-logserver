@@ -256,6 +256,8 @@ if (! -e "/root/.pgpass") {
 `echo "$dbhost:$dbport:postgres:$adminuser:$adminuserpass" > /root/.pgpass`;
 `chmod 0600 /root/.pgpass`;
 
+$ENV{'PGPASSFILE'} = "/root/.pgpass";
+
 # Creating all the database stuff
 `createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" "$webuser" 2>>$logfile`;
 `createuser -h $dbhost -p $dbport -S -D -E -R -U "$adminuser" nepenthes 2>>$logfile`;
