@@ -10,7 +10,7 @@ surfids-logserver (3.10) lenny; urgency=low
   * Several minor bugfixes
   * Improved database handling in the installer
 
- -- SURFids Development Team <ids@surfnet.nl>  Mon, 07 Jun 2011 15:10:09 +0200
+ -- SURFids Development Team <ids@surfnet.nl>  Mon,  7 Jun 2011 15:10:09 +0200
 
 surfids-logserver (3.05) lenny; urgency=low
 
