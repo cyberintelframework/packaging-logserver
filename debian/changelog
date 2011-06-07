@@ -8,6 +8,7 @@ surfids-logserver (3.10) lenny; urgency=low
   * Support for binary hash lookups
   * Support for public RSS feeds
   * Several minor bugfixes
+  * Improved database handling in the installer
 
  -- SURFids Development Team <ids@surfnet.nl>  Mon, 07 Jun 2011 15:10:09 +0200
 
