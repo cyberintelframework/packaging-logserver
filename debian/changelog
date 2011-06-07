@@ -1,32 +1,42 @@
-surfids-logserver (3.07) lenny; urgency=low
+surfids-logserver (3.10) lenny; urgency=low
 
-  * Test build 06
+  * SURFids 3.10 stable release
+  * Support for Kippo (a medium interaction SSH honeypot)
+  * Improved google map functionality
+  * Support for APT interaction via the webinterface
+  * Improved Ethernet module screens
+  * Support for binary hash lookups
+  * Support for public RSS feeds
+  * Several minor bugfixes
 
- -- SURFids Development Team <ids@surfnet.nl>  Thu, 27 Jan 2011 17:31:27 +0100
-
-surfids-logserver (3.06) lenny; urgency=low
-
-  * Test build 05
-
- -- SURFids Development Team <ids@surfnet.nl>  Thu, 27 Jan 2011 17:03:04 +0100
+ -- SURFids Development Team <ids@surfnet.nl>  Mon, 07 Jun 2011 15:10:09 +0200
 
 surfids-logserver (3.05) lenny; urgency=low
 
-  * Test build 04
+  * Fixed a bug in the 30400.sql file.
 
- -- SURFids Development Team <ids@surfnet.nl>  Thu, 27 Jan 2011 14:07:56 +0100
+ -- SURFids Development Team <ids@surfnet.nl>  Mon, 14 Jun 2010 11:19:03 +0200
 
 surfids-logserver (3.04) lenny; urgency=low
 
-  * Test build 03
+   * Fixed bugs: 178, 181, 185, 187, 192, 193, 196, 205, 206, 207, 220
+   * Fixed IGMP protocol detection
+   * Fixed pubDate bug in RSS feed
+   * Fixed checkSID function
+   * Improved whois functionality (Cymru lookups)
+   * Improved Detected Protocols page
+   * Improved ARP cache page
+   * Added subtypes for ICMP protocol
+   * Added Dionaea support
+   * Added Amun support
+   * Added CSN.at SMTP honeypot support
+   * Added GeoIP database download script
+   * Added support for public RSS feeds
+   * Added top malicious countries module
+   * Added top malware hosts module
+   * Added janitor for syslog table
 
- -- SURFids Development Team <ids@surfnet.nl>  Thu, 27 Jan 2011 14:00:38 +0100
-
-surfids-logserver (3.03) lenny; urgency=low
-
-  * Test build 02
-
- -- SURFids Development Team <ids@surfnet.nl>  Thu, 27 Jan 2011 13:46:50 +0100
+ -- SURFids Development Team <ids@surfnet.nl>  Fri,  7 May 2010 14:32:29 +0200
 
 surfids-logserver (3.02) lenny; urgency=low
 
@@ -57,3 +67,4 @@ surfids-logserver (beta) lenny; urgency=low
   * Beta release.
 
  -- SURFids Development Team <ids@surfnet.nl>  Wed, 19 Aug 2009 15:20:49 +0200
+
