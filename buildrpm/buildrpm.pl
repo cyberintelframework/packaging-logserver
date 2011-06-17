@@ -10,8 +10,8 @@ $release = "stable-3.10";
 
 print "\n##### SVN EXPORT\n";
 chdir("$buildroot/SPECS/");
-#$out = `svn export $svnurl/packaging/$pack/trunk/buildrpm/SPECS/$package.spec`;
-#print $out;
+$out = `svn export $svnurl/packaging/$pack/trunk/buildrpm/SPECS/$package.spec`;
+print $out;
 chdir("$buildroot/SOURCES/");
 $out = `svn export $svnurl/$pack/$subtree/$release/ ./$package-$version/`;
 print $out;
