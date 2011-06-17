@@ -1,25 +1,30 @@
 #!/usr/bin/perl
 
+$buildroot = "/root/rpmbuild";
 $svnurl = "http://svn.ids.surfnet.nl/surfids";
-$package = "logserver";
+$pack = "logserver";
+$package = "surfids-logserver";
 $version = "3.10";
 $subtree = "tags";
 $release = "stable-3.10";
 
-##### DO NOT EDIT
-$sourcedir = "./SOURCES/surfids-$package-$version";
-
-# Downloading sources
-`svn export $svnurl/$package/$subtree/$release/ $sourcedir/`;
-
-# Deleting obsolete stuff
-`rm -f $sourcedir/install_log.pl`;
-`rm -f $sourcedir/functions_log.pl`;
-`rm -f $sourcedir/logserver_remove.txt`;
-
-# Creating .tar.gz
-`tar -cvzf ./SOURCES/surfids-$package-$version.tar.gz $sourcedir/`;
-
-# Building RPM
-`rpmbuild -ba ./SPECS/surfids-$package.spec`;
-
+print "\n##### SVN EXPORT\n";
+chdir("$buildroot/SPECS/");
+#$out = `svn export $svnurl/packaging/$pack/trunk/buildrpm/SPECS/$package.spec`;
+#print $out;
+chdir("$buildroot/SOURCES/");
+$out = `svn export $svnurl/$pack/$subtree/$release/ ./$package-$version/`;
+print $out;
+$out = `svn export $svnurl/packaging/$pack/trunk/debian/cron.d ./$package-$version/cron.d`;
+print $out;
+print "\n##### CREATING TAR\n";
+$out = `tar -cvzf $package-$version.tar.gz $package-$version/`;
+print $out;
+chdir($buildroot);
+print "\n##### RPMBUILD\n";
+$out = `rpmbuild --define '_topdir /root/rpmbuild/' -ba SPECS/$package.spec 2>&1`;
+print $out;
+print "\n##### CLEANING UP\n";
+`rm -rf $buildroot/SOURCES/$package-$version/`;
+`rm -rf $buildroot/TMP/$package-$version/`;
+`rm -rf $buildroot/BUILD/$package-$version/`;

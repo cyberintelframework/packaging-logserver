@@ -6,11 +6,14 @@ License: GPL
 Group: Applications/Internet
 Source: surfids-logserver-3.10.tar.gz
 URL: http://ids.surfnet.nl/
-BuildRoot: /home/build/rpmbuild/surfids-logserver/BUILDROOT/
+BuildRoot: /root/rpmbuild/BUILD/surfids-logserver-3.10/
+BuildArch: noarch
 Requires: postgresql >= 8.3, httpd >= 2, mod_auth_pgsql, sendmail, xalan-j2, perl, php, php-pgsql, perl-DBI, perl-DBD-Pg, php-gd, gnupg, perl-IO-Socket-SSL
 
 %define surfinstall /opt/surfnetids
 %define surfconfig /etc/surfnetids
+%define surflog /var/log/surfids
+%define builddir %{_topdir}/TMP/surfids-logserver-3.10
 
 %description
 The logserver component of the SURFids framework.
@@ -18,41 +21,32 @@ The logserver component of the SURFids framework.
 %prep
 %setup -q
 %install
-rm -rf %{_buildroot}
-# Create surfnetids directories
-install -m 755 -d %{_buildroot}%{surfinstall}
-install -m 755 -d %{_buildroot}%{surfconfig}
-install	-m 755 -d %{_buildroot}/etc/cron.d/
-install	-m 755 -d %{_buildroot}/var/log/
-install	-m 755 -d %{_buildroot}/etc/httpd/conf.d/
-mv -f * %{_buildroot}%{surfinstall}/
-mv -f %{_buildroot}%{surfinstall}/surfnetids-log.conf %{_buildroot}%{surfconfig}/
-mv -f %{_buildroot}%{surfinstall}/surfnetids-log-apache.conf %{_buildroot}%{surfconfig}/
 
-# install important files
-install -m 644 %{_buildroot}%{surfinstall}/cron.d %{_buildroot}/etc/cron.d/surfids-logserver
-install -m 644 %{_buildroot}%{surfinstall}/htaccess.dist %{_buildroot}%{surfinstall}/webinterface/.htaccess
-touch %{_buildroot}/var/log/surfids.log
-chmod 640 %{_buildroot}/var/log/surfids.log
+install -m 755 -d %{builddir}%{surfinstall}
+install -m 755 -d %{builddir}%{surfconfig}
+install -m 755 -d %{builddir}%{surflog}
+install -m 755 -d %{builddir}/etc/cron.d/
+install -m 755 -d %{builddir}/etc/httpd/conf.d/
+mv -f * %{builddir}%{surfinstall}
+mv -f %{builddir}%{surfinstall}/surfnetids-log.conf %{builddir}%{surfconfig}/
+mv -f %{builddir}%{surfinstall}/surfnetids-log-apache.conf %{builddir}%{surfconfig}/
+install -m 644 %{builddir}%{surfinstall}/cron.d %{builddir}/etc/cron.d/surfids-logserver
+install -m 644 %{builddir}%{surfinstall}/htaccess.dist %{builddir}%{surfinstall}/webinterface/.htaccess
+
+# Build a manifest of the RPM's directory hierarchy.
+echo "%%defattr(-, root, root)" >MANIFEST
+(cd %{builddir}; find . -type f -or -type l | sed -e s/^.// -e /^$/d) >>MANIFEST
+echo "%{surfinstall}/MANIFEST" >>MANIFEST
+
+mv -f %{builddir}/* .
+mv -f MANIFEST ./%{surfinstall}
 
 %clean
 
 %post
 ln -s %{surfconfig}/surfnetids-log-apache.conf /etc/httpd/conf.d/surfids-logserver.conf
 
-%files
-%defattr(-,root,root,-)
-# Directory
-%dir %{surfinstall}
-%dir %{surfconfig}
-# All it's subcontents
-%{surfinstall}/*
-%config %{surfconfig}/surfnetids-log.conf
-%config %{surfconfig}/surfnetids-log-apache.conf
-# Misc config files
-/etc/cron.d/surfids-logserver
-# surfids logfile
-/var/log/surfids.log
+%files -f %{_topdir}/BUILD/surfids-logserver-3.10/opt/surfnetids/MANIFEST
 
 %changelog
 * Fri Jun 17 2011 SURFids Development Team <ids at, surfnet.nl> 3.10-1
