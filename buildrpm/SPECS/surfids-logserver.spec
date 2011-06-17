@@ -1,6 +1,6 @@
 Summary: The logging server for the SURFids framework.
 Name: surfids-logserver
-Version: 3.02
+Version: 3.10
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -55,6 +55,8 @@ ln -s %{surfconfig}/surfnetids-log-apache.conf /etc/httpd/conf.d/surfids-logserv
 /var/log/surfids.log
 
 %changelog
+* Fri Jun 17 2011 SURFids Development Team <ids at, surfnet.nl> 3.10-1
+- SURFids 3.10.
 * Wed Aug 26 2009 SURFids Development Team <ids at, surfnet.nl> 3.02-1
 - Fixed bug #176.
 * Fri Aug 21 2009 SURFids Development Team <ids at, surfnet.nl> 3.01-1

@@ -2,9 +2,9 @@
 
 $svnurl = "http://svn.ids.surfnet.nl/surfids";
 $package = "logserver";
-$version = "3.02";
+$version = "3.10";
 $subtree = "tags";
-$release = "stable-3.02";
+$release = "stable-3.10";
 
 ##### DO NOT EDIT
 $sourcedir = "./SOURCES/surfids-$package-$version";
