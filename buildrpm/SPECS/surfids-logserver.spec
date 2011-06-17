@@ -14,6 +14,7 @@ Requires: postgresql >= 8.3, httpd >= 2, mod_auth_pgsql, sendmail, xalan-j2, per
 %define surfconfig /etc/surfnetids
 %define surflog /var/log/surfids
 %define builddir %{_topdir}/TMP/surfids-logserver-3.10
+%define fullpack surfids-logserver-3.10
 
 %description
 The logserver component of the SURFids framework.
@@ -46,7 +47,7 @@ mv -f MANIFEST ./%{surfinstall}
 %post
 ln -s %{surfconfig}/surfnetids-log-apache.conf /etc/httpd/conf.d/surfids-logserver.conf
 
-%files -f %{_topdir}/BUILD/surfids-logserver-3.10/opt/surfnetids/MANIFEST
+%files -f %{_topdir}/BUILD/%{fullpack}/opt/surfnetids/MANIFEST
 
 %changelog
 * Fri Jun 17 2011 SURFids Development Team <ids at, surfnet.nl> 3.10-1
