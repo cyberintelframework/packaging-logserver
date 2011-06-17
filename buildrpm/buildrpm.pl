@@ -22,7 +22,7 @@ $out = `tar -cvzf $package-$version.tar.gz $package-$version/`;
 print $out;
 chdir($buildroot);
 print "\n##### RPMBUILD\n";
-$out = `rpmbuild --define '_topdir /root/rpmbuild/' -ba SPECS/$package.spec 2>&1`;
+$out = `rpmbuild --define '_topdir $buildroot' -ba SPECS/$package.spec 2>&1`;
 print $out;
 print "\n##### CLEANING UP\n";
 `rm -rf $buildroot/SOURCES/$package-$version/`;
