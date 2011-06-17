@@ -4,7 +4,7 @@ Version: 3.10
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
-Source: surfids-logserver-3.02.tar.gz
+Source: surfids-logserver-3.10.tar.gz
 URL: http://ids.surfnet.nl/
 BuildRoot: /home/build/rpmbuild/surfids-logserver/BUILDROOT/
 Requires: postgresql >= 8.3, httpd >= 2, mod_auth_pgsql, sendmail, xalan-j2, perl, php, php-pgsql, perl-DBI, perl-DBD-Pg, php-gd, gnupg, perl-IO-Socket-SSL
