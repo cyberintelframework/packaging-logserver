@@ -1,3 +1,10 @@
+surfids-logserver (3.11) lenny; urgency=low
+
+  * Fixed a bug in SQL function surfids3_detail_add_download.
+  * Fixed a bug in the top malware hosts page.
+
+ -- SURFids Development Team <ids@surfnet.nl>  Mon, 01 Aug 2011 13:42:45 +0200
+
 surfids-logserver (3.10) lenny; urgency=low
 
   * SURFids 3.10 stable release

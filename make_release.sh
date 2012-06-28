@@ -1,17 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
 KEYID=91987C36
 MAKEROOT=/home/build/logserver
 DIST=lenny
 REPOSITORY=/opt/surfnetids/repositories/surfids
-
-# Static location of the chroot images
 CHROOTBUILD=/home/build/chrootimg/$DIST.tgz
 CHROOTTEST=/home/build/chrootimg/$DIST_test.tgz
 MIRROR=http://ftp.nl.debian.org/debian
 PACKAGE=surfids-logserver
 
-# Clean up previous build
 cd $MAKEROOT
 rm ${PACKAGE}_*
 
@@ -23,61 +20,44 @@ else
     sudo pbuilder --create --basetgz $CHROOTBUILD --distribution $DIST --mirror $MIRROR
 fi
 
-
-## Update to latest version
-# If this fails, please checkout the sensor trunk:
-# cd $MAKEROOT
-#  svn co http://svn.ids.surfnet.nl/surfids/logserver/trunk
-
-# download temporary trunk
 svn export http://svn.ids.surfnet.nl/surfids/logserver/trunk $MAKEROOT/trunk/
 cd $MAKEROOT/trunk
 
-# cleanup build trunk
+# OPT
 rm -rf $MAKEROOT/$PACKAGE/opt/surfnetids/
 mkdir -p $MAKEROOT/$PACKAGE/opt/surfnetids/
 
-# copy temporary trunk to build trunk dir
-cp -R ./* $MAKEROOT/$PACKAGE/opt/surfnetids/
+cp -R $MAKEROOT/trunk/* $MAKEROOT/$PACKAGE/opt/surfnetids/
+chmod +x $MAKEROOT/$PACKAGE/opt/surfnetids/webinterface/include/flexi/
+chmod +x $MAKEROOT/$PACKAGE/opt/surfnetids/webinterface/include/overlib/
 
-# setup /etc directory
+# ETC
+rm -rf $MAKEROOT/$PACKAGE/etc/surfnetids/
 mkdir -p $MAKEROOT/$PACKAGE/etc/surfnetids/
+
 mv $MAKEROOT/$PACKAGE/opt/surfnetids/surfnetids-log.conf $MAKEROOT/$PACKAGE/etc/surfnetids/
 mv $MAKEROOT/$PACKAGE/opt/surfnetids/surfnetids-log-apache.conf $MAKEROOT/$PACKAGE/etc/surfnetids/
 
-# setup permissions
-chmod -x $MAKEROOT/$PACKAGE/opt/surfnetids/webinterface/images/worldflags/*.gif
-chmod -R -x $MAKEROOT/$PACKAGE/opt/surfnetids/webinterface/include/*
-chmod -x $MAKEROOT/$PACKAGE/etc/surfnetids/surfnetids-log-apache.conf
-cd $MAKEROOT
+# DEBIAN
+rm -rf $MAKEROOT/$PACKAGE/debian/
+cd $MAKEROOT/$PACKAGE/
+svn export http://svn.ids.surfnet.nl/surfids/packaging/logserver/trunk/debian/ debian/
 
-# delete temporary trunk download
+# CLEANUP
 rm -rf $MAKEROOT/trunk/
 cd $MAKEROOT/$PACKAGE
 
-# Increment changelog entry
+# CHANGELOG
 dch -i -m
-#svn commit
+sudo cp debian/changelog /opt/surfnetids/packaging/logserver/trunk/debian/
 
-## create the package
+# BUILDING
 pdebuild -- --basetgz $CHROOTBUILD
-#dpkg-deb --build $PACKAGE
 
-### Test the package
-#if [ -s $CHROOTTEST ]
-#then
-#    sudo piuparts -b  $CHROOTTEST -d $DIST *.deb -m $MIRROR
-#else
-#    sudo piuparts -s  $CHROOTTEST -d $DIST *.deb -m $MIRROR
-#   # check exit code
-#fi
-
-
-# Collect results and sign
 cd $MAKEROOT
 sudo mv /var/cache/pbuilder/result/${PACKAGE}_* .
 debsign -k$KEYID ${PACKAGE}_*_i386.changes
 
-# add package to repository
-cd $REPOSITORY
-sudo reprepro --keepunreferencedfiles include $DIST $MAKEROOT/$PACKAGE_*_i386.changes
+# ADDING TO REPO
+#cd $REPOSITORY
+#sudo reprepro --keepunreferencedfiles include $DIST $MAKEROOT/$PACKAGE_*_i386.changes
